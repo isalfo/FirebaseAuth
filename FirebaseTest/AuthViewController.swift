@@ -8,21 +8,35 @@
 import UIKit
 import FirebaseAnalytics
 import FirebaseAuth
-
+import GoogleSignIn
+import Firebase
+// MARK: AuthVC class
 class AuthViewController: UIViewController {
-
+  // MARK: - Properties
   @IBOutlet weak var emailTxt: UITextField!
-  
   @IBOutlet weak var passTxt: UITextField!
-  
+  @IBOutlet weak var googleBtn: UIButton!
   @IBOutlet weak var registerBtn: UIButton!
   @IBOutlet weak var logInBtn: UIButton!
+  
+  // MARK: - Lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Authentication"
+    googleBtn.imageEdgeInsets.left = -90
+    
+    // Analytics Event
     Analytics.logEvent("InitScreen", parameters: ["message":"Firebase Integration Complete"])
+    
+    // Check for authenticated user
+    let defaults = UserDefaults.standard
+    if let email = defaults.value(forKey: "email") as? String,
+       let provider = defaults.value(forKey: "provider") as? String {
+      navigationController?.pushViewController(HomeViewController(email: email, provider: ProviderType(rawValue: provider)!), animated: false)
+    }
   }
-
+  
+  // MARK: - IBAction methods
   @IBAction func registerClicked(_ sender: Any) {
     
     if let email = emailTxt.text, let pass = passTxt.text {
@@ -47,5 +61,39 @@ class AuthViewController: UIViewController {
       }
     }
   }
+  
+  
+  @IBAction func googleClicked(_ sender: Any) {
+    
+    guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+    let config = GIDConfiguration(clientID: clientID)
+    GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+
+      if let error = error {
+        self.showSimpleAlert("Error", message: error.localizedDescription)
+        return
+      }
+
+      guard
+        let authentication = user?.authentication,
+        let idToken = authentication.idToken
+      else {
+        return
+      }
+
+      let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                     accessToken: authentication.accessToken)
+
+      Auth.auth().signIn(with: credential) { authResult, error in
+          if let error = error {
+            self.showSimpleAlert("Error", message: error.localizedDescription)
+          }
+        self.navigationController?.pushViewController(HomeViewController(email: authResult!.user.email!, provider: .google), animated: true)
+      }
+    }
+    
+  }
+  
+  
 }
 
