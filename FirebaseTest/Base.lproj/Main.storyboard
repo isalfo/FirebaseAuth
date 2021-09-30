@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,20 +16,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fH7-UE-5OU">
-                                <rect key="frame" x="16" y="104" width="382" height="124"/>
+                                <rect key="frame" x="16" y="104" width="382" height="182"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a1Z-q6-YYT">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="34"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3fz-eP-szy">
-                                        <rect key="frame" x="0.0" y="42" width="382" height="34"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3fz-eP-szy">
+                                        <rect key="frame" x="0.0" y="52" width="382" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Agm-pS-jY9">
-                                        <rect key="frame" x="0.0" y="84" width="382" height="40"/>
+                                        <rect key="frame" x="0.0" y="94" width="382" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6y-Rr-lfN">
                                                 <rect key="frame" x="0.0" y="0.0" width="187" height="40"/>
@@ -57,20 +56,35 @@
                                             <constraint firstAttribute="height" constant="40" id="euT-dx-xBm"/>
                                         </constraints>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Erl-8o-0qx">
+                                        <rect key="frame" x="0.0" y="142" width="382" height="40"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Yuf-7w-awR"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign in with Google" image="google_ico">
+                                            <color key="titleColor" red="0.17249754070000001" green="0.2189837694" blue="0.2901856303" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="googleClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m46-1M-qd3"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fH7-UE-5OU" secondAttribute="trailing" constant="16" id="9y4-gb-kWa"/>
                             <constraint firstItem="fH7-UE-5OU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="SIf-cE-uq1"/>
                             <constraint firstItem="fH7-UE-5OU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Ubb-a1-Tby"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fH7-UE-5OU" secondAttribute="bottom" constant="576" id="c51-Qi-vta"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7B4-sS-Uw6"/>
                     <connections>
                         <outlet property="emailTxt" destination="a1Z-q6-YYT" id="LNG-p5-dge"/>
+                        <outlet property="googleBtn" destination="Erl-8o-0qx" id="PSY-0u-jTt"/>
                         <outlet property="logInBtn" destination="aRh-ju-Wa4" id="352-h4-fSB"/>
                         <outlet property="passTxt" destination="3fz-eP-szy" id="GHZ-CC-ebo"/>
                         <outlet property="registerBtn" destination="w6y-Rr-lfN" id="d8s-Th-cSh"/>
@@ -100,8 +114,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="google_ico" width="30" height="30"/>
     </resources>
 </document>
