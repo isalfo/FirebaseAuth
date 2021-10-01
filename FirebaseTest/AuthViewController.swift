@@ -10,6 +10,8 @@ import FirebaseAnalytics
 import FirebaseAuth
 import GoogleSignIn
 import Firebase
+import FBSDKLoginKit
+
 // MARK: AuthVC class
 class AuthViewController: UIViewController {
   // MARK: - Properties
@@ -18,12 +20,18 @@ class AuthViewController: UIViewController {
   @IBOutlet weak var googleBtn: UIButton!
   @IBOutlet weak var registerBtn: UIButton!
   @IBOutlet weak var logInBtn: UIButton!
+  @IBOutlet weak var stackView: UIStackView!
   
   // MARK: - Lifecycle methods
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Authentication"
     googleBtn.imageEdgeInsets.left = -90
+    
+    let FacebookLoginButton = FBLoginButton()
+    view.addSubview(FacebookLoginButton)
+    FacebookLoginButton.center = view.center
+    FacebookLoginButton.permissions = ["public_profile", "email"]
     
     // Analytics Event
     Analytics.logEvent("InitScreen", parameters: ["message":"Firebase Integration Complete"])
@@ -34,6 +42,10 @@ class AuthViewController: UIViewController {
        let provider = defaults.value(forKey: "provider") as? String {
       navigationController?.pushViewController(HomeViewController(email: email, provider: ProviderType(rawValue: provider)!), animated: false)
     }
+    if let token = AccessToken.current, !token.isExpired {
+      navigationController?.popToViewController(HomeViewController(email: "", provider: .facebook), animated: true)
+    }
+    
   }
   
   // MARK: - IBAction methods
@@ -91,9 +103,6 @@ class AuthViewController: UIViewController {
         self.navigationController?.pushViewController(HomeViewController(email: authResult!.user.email!, provider: .google), animated: true)
       }
     }
-    
   }
-  
-  
 }
 

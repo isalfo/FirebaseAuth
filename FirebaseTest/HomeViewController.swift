@@ -12,6 +12,7 @@ import GoogleSignIn
 enum ProviderType: String {
   case basic = "Basic"
   case google = "Google"
+  case facebook = "Facebook"
 }
 
 class HomeViewController: UIViewController {
@@ -69,9 +70,9 @@ class HomeViewController: UIViewController {
     case .google:
       GIDSignIn.sharedInstance.signOut()
       fireBaseLogOut()
+    case .facebook:
+      fireBaseLogOut()
     }
     self.navigationController?.popViewController(animated: true)
   }
-  
-  
 }

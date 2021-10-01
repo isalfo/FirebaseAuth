@@ -9,4 +9,7 @@ target 'FirebaseTest' do
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'GoogleSignIn'
+pod 'FBSDKShareKit'
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
 end
