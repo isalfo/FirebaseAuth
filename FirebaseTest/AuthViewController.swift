@@ -20,7 +20,6 @@ class AuthViewController: UIViewController {
   @IBOutlet weak var googleBtn: UIButton!
   @IBOutlet weak var registerBtn: UIButton!
   @IBOutlet weak var logInBtn: UIButton!
-  @IBOutlet weak var stackView: UIStackView!
   
   // MARK: - Lifecycle methods
   override func viewDidLoad() {
@@ -30,7 +29,10 @@ class AuthViewController: UIViewController {
     
     let FacebookLoginButton = FBLoginButton()
     view.addSubview(FacebookLoginButton)
-    FacebookLoginButton.center = view.center
+    FacebookLoginButton.translatesAutoresizingMaskIntoConstraints = false
+    FacebookLoginButton.topAnchor.constraint(equalTo: googleBtn.bottomAnchor, constant: 16).isActive = true
+    FacebookLoginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16).isActive = true
+    FacebookLoginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16).isActive = true
     FacebookLoginButton.permissions = ["public_profile", "email"]
     
     // Analytics Event
