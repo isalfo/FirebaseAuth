@@ -12,4 +12,5 @@ pod 'GoogleSignIn'
 pod 'FBSDKShareKit'
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
+pod 'Firebase/Crashlytics'
 end
