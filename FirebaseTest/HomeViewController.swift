@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import GoogleSignIn
+import FirebaseCrashlytics
 
 enum ProviderType: String {
   case basic = "Basic"
@@ -19,6 +20,7 @@ class HomeViewController: UIViewController {
   
   @IBOutlet weak var userTxt: UILabel!
   @IBOutlet weak var providerTxt: UILabel!
+  @IBOutlet weak var errorBtn: UIButton!
   
   @IBOutlet weak var logOutBtn: UIButton!
   
@@ -57,6 +59,18 @@ class HomeViewController: UIViewController {
     }
   }
   
+  @IBAction func errorBtnClicked(_ sender: Any) {
+    // Send User ID
+    Crashlytics.crashlytics().setUserID(email)
+    
+    // Send custom key
+    Crashlytics.crashlytics().setValue(provider, forKey: "PROVIDER")
+    
+    // Send Error Log
+    Crashlytics.crashlytics().log("Error button pressed")
+    
+    fatalError()
+  }
   @IBAction func logOutClicked(_ sender: Any) {
     
     let defaults = UserDefaults.standard

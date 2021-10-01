@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="FirebaseTest" customModuleProvider="target">
             <connections>
+                <outlet property="errorBtn" destination="Xjb-mM-6UK" id="UA4-uv-dk0"/>
                 <outlet property="logOutBtn" destination="FYk-Pz-3Bl" id="dVp-cw-vdn"/>
                 <outlet property="providerTxt" destination="O6q-0s-5h9" id="rYY-cu-rg4"/>
                 <outlet property="userTxt" destination="dNa-g2-AVM" id="4pt-Ul-mNS"/>
@@ -22,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d6E-to-AGF">
-                    <rect key="frame" x="16" y="60" width="382" height="136"/>
+                    <rect key="frame" x="16" y="60" width="382" height="184"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNa-g2-AVM">
                             <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
@@ -47,6 +49,20 @@
                             </state>
                             <connections>
                                 <action selector="logOutClicked:" destination="-1" eventType="touchUpInside" id="V1V-Nh-cwI"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xjb-mM-6UK">
+                            <rect key="frame" x="0.0" y="144" width="382" height="40"/>
+                            <color key="backgroundColor" red="1" green="0.10244445942925176" blue="0.37957562570154418" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="jBy-65-sfQ"/>
+                            </constraints>
+                            <state key="normal" title="Force Error">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="errorBtnClicked:" destination="-1" eventType="touchUpInside" id="DZf-me-2xS"/>
+                                <action selector="logOutClicked:" destination="-1" eventType="touchUpInside" id="shY-MK-oSl"/>
                             </connections>
                         </button>
                     </subviews>
